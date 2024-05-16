@@ -9,6 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import React from 'react';
+import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Item from './Item';
 export default function SelectGender(setGender: any) {
   const [modalVisible, setModalVisible] = React.useState(true);
@@ -38,6 +39,9 @@ export default function SelectGender(setGender: any) {
 
   return (
     <View style={styles.centeredView}>
+      <View>
+        <FontAwesome name="filter" color="black" size={30} />
+      </View>
       <Pressable
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}>
