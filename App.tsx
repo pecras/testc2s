@@ -8,18 +8,38 @@
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import ImageLoading from './components/imageFirst';
+import {fetchUsers} from './api/apiRamdomUser';
+import SelectGender from './components/selectGender';
 
 function App(): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
+  const [results, setResults] = useState(20);
+
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetchUsers(gender, results, name);
+        console.log(res);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchData();
+  }, [gender, name, results]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.sectionContainer}>
           {isLoading && <ImageLoading />}
+          <SelectGender setGender={setGender} />
         </View>
       </ScrollView>
     </SafeAreaView>
