@@ -8,14 +8,18 @@
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import ImageLoading from './components/imageFirst';
-import {fetchUsers} from './api/apiRamdomUser';
 import SelectGender from './components/selectGender';
+import ListUsers from './components/listUsers';
+import InputName from './components/input';
+import {fetchFilterUsers} from './api/apifilterName';
+import {GetList} from './MMKVStorage/storage';
 
 function App(): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
-  const [results, setResults] = useState(20);
+  const [number, setNumber] = useState(20);
+  const [results, setResults] = useState<any[]>();
 
   useEffect(() => {
     setIsLoading(false);
@@ -24,22 +28,30 @@ function App(): React.JSX.Element {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetchUsers(gender, results, name);
-        console.log(res);
+        const dataCache = GetList();
+        if (dataCache) {
+          setResults(dataCache);
+        }
+        const filteredUsers = await fetchFilterUsers(name, gender);
+        setResults(filteredUsers);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     };
 
     fetchData();
-  }, [gender, name, results]);
+  }, [gender, name, number]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <ScrollView>
         <View style={styles.sectionContainer}>
           {isLoading && <ImageLoading />}
-          <SelectGender setGender={setGender} />
+          <View style={styles.filters}>
+            <InputName setName={setName} />
+            <SelectGender setGender={setGender} />
+          </View>
+          <ListUsers listUser={results} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -52,6 +64,10 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     flexGrow: 1,
+  },
+  filters: {
+    flex: 1,
+    flexDirection: 'row',
   },
   sectionContainer: {
     flex: 1,

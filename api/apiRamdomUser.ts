@@ -1,10 +1,10 @@
 export const fetchUsers = async (
   gender: string,
-  results: number,
+  number: number,
   name: string,
 ) => {
   try {
-    let url = `https://randomuser.me/api/?results=${results}`;
+    let url = `https://randomuser.me/api/?results=${number}`;
     if (gender) {
       url += `&gender=${gender}`;
     }

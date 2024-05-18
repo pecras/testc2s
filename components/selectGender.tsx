@@ -11,8 +11,13 @@ import {
 import React from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Item from './Item';
-export default function SelectGender(setGender: any) {
-  const [modalVisible, setModalVisible] = React.useState(true);
+
+interface SelectGenderProps {
+  setGender: (value: string) => void;
+}
+
+export default function SelectGender({setGender}: SelectGenderProps) {
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   const data = [
     {
@@ -35,17 +40,17 @@ export default function SelectGender(setGender: any) {
   const onPressFunction = (value: string) => {
     console.log(value);
     setGender(value);
+    setModalVisible(false);
   };
 
   return (
     <View style={styles.centeredView}>
-      <View>
-        <FontAwesome name="filter" color="black" size={30} />
-      </View>
       <Pressable
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}>
-        <Text style={styles.textStyle}>Show Modal</Text>
+        <View>
+          <FontAwesome name="filter" color="black" size={30} />
+        </View>
       </Pressable>
       <Modal
         animationType="fade"
