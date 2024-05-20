@@ -38,7 +38,6 @@ export default function SelectGender({setGender}: SelectGenderProps) {
   ];
 
   const onPressFunction = (value: string) => {
-    console.log(value);
     setGender(value);
     setModalVisible(false);
   };
@@ -49,7 +48,7 @@ export default function SelectGender({setGender}: SelectGenderProps) {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}>
         <View>
-          <FontAwesome name="filter" color="black" size={30} />
+          <FontAwesome name="filter" color="black" size={20} />
         </View>
       </Pressable>
       <Modal
@@ -79,7 +78,7 @@ export default function SelectGender({setGender}: SelectGenderProps) {
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              <Text style={styles.textStyle}>Fechar</Text>
             </Pressable>
           </View>
         </View>
@@ -96,14 +95,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    marginTop: 2,
     maxHeight: 500,
   },
   modalView: {
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    marginLeft: 140,
+    marginTop: 125,
+    padding: 40,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: '#F194FF',
+    backgroundColor: 'orange',
   },
   buttonClose: {
     backgroundColor: '#2196F3',

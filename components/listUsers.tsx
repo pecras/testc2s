@@ -1,13 +1,16 @@
-import {View, StyleSheet} from 'react-native';
-import React from 'react';
+import {View, StyleSheet, Pressable} from 'react-native';
+import React, {useState} from 'react';
 import UserItem from './itemUserList';
 import ImageLoading from './imageLoading';
+import ModalUser from './modalUsers'; // Corrigido: Remova as chaves de importação
 
 interface PropsListUsers {
   listUser: any[] | undefined;
 }
 
 export default function ListUsers({listUser}: PropsListUsers) {
+  const [selectedUser, setSelectedUser] = useState(null);
+
   if (listUser === undefined) {
     return <ImageLoading />;
   }
@@ -16,8 +19,21 @@ export default function ListUsers({listUser}: PropsListUsers) {
     <View>
       <View style={styles.containt}>
         {listUser &&
-          listUser.map(user => <UserItem key={user.login.uuid} user={user} />)}
+          listUser.map((user: any) => (
+            <View key={user.login.uuid}>
+              <Pressable onPress={() => setSelectedUser(user)}>
+                <UserItem key={user.login.uuid} user={user} />
+              </Pressable>
+            </View>
+          ))}
       </View>
+      {selectedUser && (
+        <ModalUser
+          setModalVisible={() => setSelectedUser(null)}
+          modalVisible={selectedUser !== null}
+          user={selectedUser}
+        />
+      )}
     </View>
   );
 }

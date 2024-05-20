@@ -28,8 +28,9 @@ export default function InputName({setName}: InputNameProps) {
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    margin: 12,
-    borderWidth: 1,
+    width: 200,
+    margin: 1,
+    borderWidth: 2,
     padding: 10,
   },
 });

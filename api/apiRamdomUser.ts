@@ -1,19 +1,11 @@
-export const fetchUsers = async (
-  gender: string,
-  number: number,
-  name: string,
-) => {
+import {SaveAllList} from '../MMKVStorage/storage';
+export const fetchAllUsers = async (results: number) => {
   try {
-    let url = `https://randomuser.me/api/?results=${number}`;
-    if (gender) {
-      url += `&gender=${gender}`;
-    }
-    if (name) {
-      url += `&name=${name}`;
-    }
+    let url = `https://randomuser.me/api/?results=${results}`;
 
     const response = await fetch(url);
     const data = await response.json();
+    SaveAllList(data.results);
     return data.results;
   } catch (error) {
     console.error(error);

@@ -54,12 +54,9 @@ const UserItem: React.FC<UserItemProps> = ({user}) => {
             styles.name
           }>{`${user.name.title} ${user.name.first} ${user.name.last}`}</Text>
         <Text style={styles.details}>{user.gender}</Text>
-        <Text
-          style={
-            styles.details
-          }>{`${user.location.city}, ${user.location.country}`}</Text>
+
         <Text style={styles.details}>{user.email}</Text>
-        <Text style={styles.details}>{user.phone}</Text>
+        <Text style={styles.details}>{user.dob.date}</Text>
       </View>
     </View>
   );
