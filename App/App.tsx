@@ -27,7 +27,7 @@ function App(): React.JSX.Element {
   useEffect(() => {
     const initialize = async () => {
       const dataCache = await GetListAll();
-      if (dataCache.value) {
+      if (dataCache) {
         setAllUsers(dataCache.value);
         setResults(dataCache.value.slice(0, 20));
       } else {
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   filters: {
     flexDirection: 'row',
     marginLeft: 10,
+    width: '90%',
   },
   sectionContainer: {
     flex: 1,

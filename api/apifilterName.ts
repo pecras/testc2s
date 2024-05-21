@@ -47,7 +47,6 @@ export const fetchFilterUsers = async (value: string, gender: string) => {
 
     return data.results;
   } catch (error) {
-    console.error('Error fetching users:', error);
     return [];
   }
 };

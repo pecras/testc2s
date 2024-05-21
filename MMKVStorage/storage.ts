@@ -14,6 +14,10 @@ export function GetList() {
   return null;
 }
 
+export function ClearAll() {
+  storage.clearAll();
+}
+
 export function SaveAllList(value: any) {
   storage.set('Alllist', JSON.stringify({value}));
 }
