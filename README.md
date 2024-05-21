@@ -8,6 +8,13 @@ Começando
 
 Passo 1: 
 Clone o repositório, extraia do zip, "se estiver usando o Visual Studio Code" abra o terminal na pasta que extraiu o repositório, insira o comando "npm install"
+
+bash
+
+# OU usando npm
+npm install
+
+
 Passo 2: Iniciar o Servidor Metro você precisará iniciar o Metro, o bundler JavaScript que acompanha o React Native.
 
 Para iniciar o Metro, execute o seguinte comando a partir da raiz do seu projeto React Native:
