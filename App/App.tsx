@@ -76,7 +76,7 @@ function App(): React.JSX.Element {
         <ImageLoading />
       ) : (
         <View style={styles.sectionContainer}>
-          <Text style={styles.text}>Innova Tech</Text>
+          <Text style={styles.text}>Innovate Tech</Text>
           <View style={styles.filters}>
             <InputName setName={setName} />
             <SelectGender setGender={setGender} />
