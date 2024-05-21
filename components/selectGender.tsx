@@ -1,13 +1,4 @@
-import {
-  FlatList,
-  Text,
-  Alert,
-  Modal,
-  StyleSheet,
-  Pressable,
-  View,
-  SafeAreaView,
-} from 'react-native';
+import {FlatList, Text, Modal, StyleSheet, Pressable, View} from 'react-native';
 import React from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Item from './Item';
@@ -56,12 +47,11 @@ export default function SelectGender({setGender}: SelectGenderProps) {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
               <FlatList
                 data={data}
                 renderItem={({item}) => (
@@ -74,7 +64,7 @@ export default function SelectGender({setGender}: SelectGenderProps) {
                 )}
                 keyExtractor={item => item.id}
               />
-            </SafeAreaView>
+            </View>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
@@ -90,21 +80,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 0,
+    width: 150,
   },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 2,
+    marginTop: 1,
     maxHeight: 500,
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#ff8c00',
     borderRadius: 20,
-    marginLeft: 140,
+    marginLeft: 200,
     marginTop: 125,
-    padding: 40,
+    padding: 15,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -116,7 +107,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
+    borderRadius: 10,
     padding: 10,
     elevation: 2,
   },
@@ -124,7 +115,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    backgroundColor: 'rebeccapurple',
+    width: 150,
   },
   textStyle: {
     color: 'white',

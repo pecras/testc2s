@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import {transformDate} from '../utils/transformDate';
 
 export type User = {
   gender: string;
@@ -53,10 +54,11 @@ const UserItem: React.FC<UserItemProps> = ({user}) => {
           style={
             styles.name
           }>{`${user.name.title} ${user.name.first} ${user.name.last}`}</Text>
-        <Text style={styles.details}>{user.gender}</Text>
 
-        <Text style={styles.details}>{user.email}</Text>
-        <Text style={styles.details}>{user.dob.date}</Text>
+        <View style={styles.containerText}>
+          <Text style={styles.details}>{user.gender}</Text>
+          <Text style={styles.details}>{transformDate(user.dob.date)}</Text>
+        </View>
       </View>
     </View>
   );
@@ -66,12 +68,16 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    justifyContent: 'space-between',
+    width: 350,
+    borderWidth: 2,
+    borderColor: 'purple',
+    marginTop: 16,
+    borderRadius: 15,
   },
   image: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     borderRadius: 25,
   },
   info: {
@@ -81,10 +87,20 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'black',
   },
+  containerText: {
+    top: 8,
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+
   details: {
-    fontSize: 14,
+    fontSize: 16,
+    right: 8,
     color: '#555',
+    paddingLeft: 8,
   },
 });
 

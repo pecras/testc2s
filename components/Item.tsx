@@ -20,12 +20,14 @@ export default function Item({title, id, value, onPressFunction}: ItemProps) {
 }
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
+    padding: 18,
     marginVertical: 8,
-    marginHorizontal: 16,
+    width: '100%',
   },
   title: {
-    fontSize: 12,
+    textAlign: 'center',
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });

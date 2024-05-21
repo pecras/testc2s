@@ -19,7 +19,7 @@ export default function InputName({setName}: InputNameProps) {
         style={styles.input}
         onChangeText={handleChangeText}
         value={text}
-        placeholder="Insira o Nome"
+        placeholder="Busca..."
       />
     </View>
   );
@@ -28,9 +28,11 @@ export default function InputName({setName}: InputNameProps) {
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    width: 200,
+    width: 320,
     margin: 1,
+    borderRadius: 15,
     borderWidth: 2,
     padding: 10,
+    fontSize: 20,
   },
 });

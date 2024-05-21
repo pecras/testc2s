@@ -2,9 +2,9 @@
 import { View,Image,StyleSheet } from 'react-native';
 import React from 'react';
 
-export default function ImageLoading() {
+export default function ImageFirst() {
   return (
-    
+
     <View style={styles.container}>
     <Image
 style={styles.imageContainer}
@@ -13,11 +13,15 @@ source={require('../assets/images/test.jpeg')} />
   );
 }
 
-const styles = StyleSheet.create({ 
-  container:{flex:1},
+const styles = StyleSheet.create({
+  container:{flex:1,
+    justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center',
+    alignSelf: 'center',
+  },
   imageContainer :{
-    marginTop:80,
-    resizeMode:'contain',
+   resizeMode:'contain',
   width:500,
 height:500},
    });

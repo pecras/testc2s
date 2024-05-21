@@ -1,5 +1,6 @@
 import React from 'react';
 import {Modal, View, Text, Button, StyleSheet, Image} from 'react-native';
+import {transformDate} from '../utils/transformDate';
 
 interface ModalUserProps {
   modalVisible: boolean;
@@ -27,14 +28,25 @@ const ModalUser: React.FC<ModalUserProps> = ({
                 styles.name
               }>{`${user.name.title} ${user.name.first} ${user.name.last}`}</Text>
             <Text style={styles.details}>{user.gender}</Text>
+            <Text style={styles.details}>{transformDate(user.dob.date)}</Text>
             <Text
               style={
                 styles.details
               }>{`${user.location.city}, ${user.location.country}`}</Text>
             <Text style={styles.details}>{user.email}</Text>
             <Text style={styles.details}>{user.phone}</Text>
+            <Text
+              style={
+                styles.details
+              }>{`${user.location.street.name} , ${user.location.street.number}`}</Text>
           </View>
-          <Button title="Close" onPress={setModalVisible} />
+          <View style={styles.button}>
+            <Button
+              title="Fechar"
+              color="rebeccapurple"
+              onPress={setModalVisible}
+            />
+          </View>
         </View>
       </View>
     </Modal>
@@ -50,7 +62,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: 'orange',
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
@@ -74,21 +86,32 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
   },
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 120,
+    height: 120,
+    borderRadius: 100,
+    top: -75,
+    borderColor: 'orange',
+    borderWidth: 2,
+    marginBottom: 15,
   },
   info: {
     marginLeft: 10,
     justifyContent: 'center',
+    marginBottom: 80,
   },
   name: {
-    fontSize: 16,
+    fontSize: 30,
     fontWeight: 'bold',
+    color: 'black',
   },
   details: {
-    fontSize: 14,
-    color: '#555',
+    top: 3,
+    fontSize: 24,
+    color: 'black',
+  },
+  button: {
+    width: 250,
+    height: 50,
   },
 });
 

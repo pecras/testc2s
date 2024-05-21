@@ -2,7 +2,7 @@ import {View, StyleSheet, Pressable} from 'react-native';
 import React, {useState} from 'react';
 import UserItem from './itemUserList';
 import ImageLoading from './imageLoading';
-import ModalUser from './modalUsers'; // Corrigido: Remova as chaves de importação
+import ModalUser from './modalUsers';
 
 interface PropsListUsers {
   listUser: any[] | undefined;

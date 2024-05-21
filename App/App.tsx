@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, View, Text} from 'react-native';
 import ImageLoading from '../components/imageFirst';
 import SelectGender from '../components/selectGender';
 import ListUsers from '../components/listUsers';
@@ -62,7 +62,7 @@ function App(): React.JSX.Element {
     const {layoutMeasurement, contentOffset, contentSize} = event.nativeEvent;
     const isCloseToBottom =
       layoutMeasurement.height + contentOffset.y >= contentSize.height - 20;
-    if (isCloseToBottom && !name) {
+    if (isCloseToBottom) {
       const nextPage = page + 1;
       const newResults = allUsers.slice(0, nextPage * 20);
       setResults(newResults);
@@ -72,19 +72,23 @@ function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.sectionContainer}>
-        {isLoading && <ImageLoading />}
-        <View style={styles.filters}>
-          <InputName setName={setName} />
-          <SelectGender setGender={setGender} />
+      {isLoading ? (
+        <ImageLoading />
+      ) : (
+        <View style={styles.sectionContainer}>
+          <Text style={styles.text}>Innova Tech</Text>
+          <View style={styles.filters}>
+            <InputName setName={setName} />
+            <SelectGender setGender={setGender} />
+          </View>
+          <ScrollView
+            style={styles.scrollViewContent}
+            onScroll={handleScroll}
+            scrollEventThrottle={16}>
+            <ListUsers listUser={results} />
+          </ScrollView>
         </View>
-        <ScrollView
-          style={styles.scrollViewContent}
-          onScroll={handleScroll}
-          scrollEventThrottle={16}>
-          <ListUsers listUser={results} />
-        </ScrollView>
-      </View>
+      )}
     </SafeAreaView>
   );
 }
@@ -95,16 +99,23 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     flexGrow: 1,
-    marginTop: 80,
+    marginTop: 20,
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: 'heavy',
+    marginBottom: 10,
+    color: 'goldenrod',
   },
   filters: {
     flexDirection: 'row',
+    marginLeft: 10,
   },
   sectionContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 80,
+    marginTop: 20,
     paddingHorizontal: 24,
   },
 });
