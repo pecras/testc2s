@@ -11,7 +11,7 @@ Clone o repositório, extraia do zip, "se estiver usando o Visual Studio Code" a
 
 bash
 
-# OU usando npm
+# usando npm
 npm install
 
 
